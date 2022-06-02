@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface IRepositoryCategory extends JpaRepository<CCategory,Integer> {
 
-    @Query(value = "SELECT (COUNT(u)+1) FROM CCategory u")
+    @Query(value = "SELECT (COUNT(c)+1) FROM CCategory c")
     Integer getNewCode();
 
 }
