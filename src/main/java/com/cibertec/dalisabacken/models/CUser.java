@@ -1,5 +1,6 @@
 package com.cibertec.dalisabacken.models;
 
+import com.cibertec.dalisabacken.models.request.CRequestUser;
 import lombok.*;
 
 import javax.persistence.*;
@@ -46,13 +47,38 @@ public class CUser implements Serializable {
     @Column(length = 25)
     private String  accountDeposit;
     @ManyToOne
-    @JoinColumn(name = "idBank")
-    private CBank bank;
+    @JoinColumn(name = "idBankAccountType")
+    private CBankAccountType bankAccountType;
     private String  userPhoto;
     @Column(length = 45,nullable = false)
     private String  registrationDate;
     @Column(length = 1)
     private Character removed;
+
+
+    public CUser(CRequestUser cRequestUser) {
+        this.idUser = cRequestUser.getIdUser();
+        this.country = cRequestUser.getCountry();
+        this.name = cRequestUser.getName();
+        this.surName = cRequestUser.getSurName();
+        this.birthDate = cRequestUser.getBirthDate();
+        this.role = cRequestUser.getRole();
+        this.civilStatus = cRequestUser.getCivilStatus();
+        this.sex = cRequestUser.getSex();
+        this.dni = cRequestUser.getDni();
+        this.direction = cRequestUser.getDirection();
+        this.district = cRequestUser.getDistrict();
+        this.mobile = cRequestUser.getMobile();
+        this.salary = cRequestUser.getSalary();
+        this.mail = cRequestUser.getMail();
+        this.userName = cRequestUser.getUserName();
+        this.password = cRequestUser.getPassword();
+        this.accountDeposit = cRequestUser.getAccountDeposit();
+        this.bankAccountType = new CBankAccountType(cRequestUser.getIdBankAccountType());
+        this.userPhoto = cRequestUser.getUserPhoto();
+        this.registrationDate = cRequestUser.getRegistrationDate();
+        this.removed = '0';
+    }
 }
 
 
