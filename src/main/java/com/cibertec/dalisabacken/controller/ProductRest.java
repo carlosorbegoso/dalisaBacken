@@ -4,6 +4,7 @@ import com.cibertec.dalisabacken.config.exception.CBusinessException;
 import com.cibertec.dalisabacken.config.exception.CErrorResponse;
 import com.cibertec.dalisabacken.models.CProduct;
 import com.cibertec.dalisabacken.models.request.CRequestProduct;
+import com.cibertec.dalisabacken.servicio.ServiceProduct;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -12,7 +13,6 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import com.cibertec.dalisabacken.service.ServiceProduct;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
