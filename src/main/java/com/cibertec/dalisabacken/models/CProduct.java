@@ -1,7 +1,6 @@
 package com.cibertec.dalisabacken.models;
 
 import com.cibertec.dalisabacken.models.request.CRequestProduct;
-import com.cibertec.dalisabacken.utils.Utils;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -50,7 +49,7 @@ public class CProduct implements Serializable {
         this.quantity = product.getQuantity();
         this.point = product.getPoint();
         this.photo = product.getPhoto();
-        this.registrationDate = (opc.equalsIgnoreCase("m"))?product.getRegistrationDate(): Utils.getDateCurrent().concat(Utils.getTimeCurrent());
+        this.registrationDate = (opc.equalsIgnoreCase("m"))?product.getRegistrationDate():Utils.getDateCurrent().concat(Utils.getTimeCurrent());
         this.removed = '0';
     }
 
