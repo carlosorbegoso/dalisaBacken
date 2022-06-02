@@ -18,7 +18,6 @@ public class CCategory implements Serializable {
 
     @Id
     @Column(nullable = false)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idCategory;
     private String categoryName;
     @Column(length = 1)

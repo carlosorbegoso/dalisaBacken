@@ -1,9 +1,9 @@
-package com.cibertec.dalisabacken.service;
+package com.cibertec.dalisabacken.servicio;
 
 import com.cibertec.dalisabacken.config.exception.CBusinessException;
 import com.cibertec.dalisabacken.interfaz.ICrudEntity;
 import com.cibertec.dalisabacken.models.CProduct;
-import com.web.dalisaback_end.repository.IRepositoryProduct;
+import com.cibertec.dalisabacken.repository.IRepositoryProduct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
