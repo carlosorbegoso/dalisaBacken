@@ -32,7 +32,7 @@ public class CRequestUser implements Serializable {
     private String  userName;
     private String  password;
     private String  accountDeposit;
-    private Integer idBank;
+    private Integer idBankAccountType;
     private String  userPhoto;
     private String  registrationDate;
     private Character removed;
