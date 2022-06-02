@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("v1/Mark")
+@RequestMapping("v1/Category")
 @CrossOrigin("*")
 public class CategoryRest {
 
