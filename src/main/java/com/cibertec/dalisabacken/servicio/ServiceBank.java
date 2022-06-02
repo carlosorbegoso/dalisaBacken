@@ -1,6 +1,7 @@
 package com.cibertec.dalisabacken.servicio;
 
 import com.cibertec.dalisabacken.config.exception.CBusinessException;
+import com.cibertec.dalisabacken.interfaz.IBank;
 import com.cibertec.dalisabacken.models.CAccountType;
 import com.cibertec.dalisabacken.models.CBank;
 import com.cibertec.dalisabacken.models.CBankAccountType;
@@ -14,7 +15,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class ServiceBank {
+public class ServiceBank implements IBank {
 
     private final IRepositoryBank iRepositoryBank;
     private final IRepositoryAccountType iRepositoryAccountType;
