@@ -1,6 +1,6 @@
 package com.cibertec.dalisabacken.models.request;
 
-import com.web.dalisaback_end.model.CCategory;
+import com.cibertec.dalisabacken.models.CCategory;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
