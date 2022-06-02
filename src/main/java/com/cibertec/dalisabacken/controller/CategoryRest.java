@@ -64,8 +64,8 @@ public class CategoryRest {
     }
 
 
-    @RequestMapping(path = "/removerCategory", method = RequestMethod.DELETE)
-    ResponseEntity<?> removedCategory(@RequestParam(name = "id") Integer id) throws CBusinessException {
+    @RequestMapping(path = "/removerCategory/{id}", method = RequestMethod.DELETE)
+    ResponseEntity<?> removedCategory(@PathVariable("id") Integer id) throws CBusinessException {
         try {
             if (serviceCategory.removedObject(id) != null) {
                 throw new CBusinessException(HttpStatus.OK, "Se Removio Correctamente");
