@@ -59,7 +59,7 @@ public class MarkRest {
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deleteMark(@PathVariable("id") int id) {
+    public ResponseEntity<?> deleteMark(@PathVariable("id") int id)throws CBusinessException {
 
         try {
             if (serviceMark.removedObject(id) != null) {
