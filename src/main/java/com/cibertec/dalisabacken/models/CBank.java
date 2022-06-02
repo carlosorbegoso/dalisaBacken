@@ -18,6 +18,7 @@ public class CBank implements Serializable {
 
     @Id
     @Column(nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idBank;
     private String nameBank;
     @Column(length =1)

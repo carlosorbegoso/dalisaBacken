@@ -18,6 +18,7 @@ public class CMark implements Serializable {
 
     @Id
     @Column(nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idMark;
     private String markName;
     @Column(length = 1)
