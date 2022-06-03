@@ -51,6 +51,7 @@ public class ProductRest {
                     content = @Content),
             @ApiResponse(responseCode = "404", description = "Producto not found",
                     content = @Content)})
+
     @RequestMapping(path = "/saveProduct", method = RequestMethod.POST)
     ResponseEntity<?> saveProduct(@RequestBody CRequestProduct product) throws CBusinessException {
         try {

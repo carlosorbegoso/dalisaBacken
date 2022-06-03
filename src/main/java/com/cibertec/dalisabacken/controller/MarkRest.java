@@ -1,17 +1,12 @@
 package com.cibertec.dalisabacken.controller;
-
+import com.cibertec.dalisabacken.config.exception.CBusinessException;
 import com.cibertec.dalisabacken.models.CMark;
 import com.cibertec.dalisabacken.servicio.ServiceMark;
-import com.cibertec.dalisabacken.servicio.ServiceUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import javax.print.DocFlavor;
-import java.util.List;
 
 @RestController
 @RequestMapping("v1/Mark")
@@ -19,7 +14,7 @@ import java.util.List;
 public class MarkRest {
 
     @Qualifier("MarkService")
-    private  ServiceMark serviceMark;
+    private ServiceMark serviceMark;
 
     @Autowired
     public MarkRest(ServiceMark serviceMark) {
@@ -27,45 +22,69 @@ public class MarkRest {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<?> insertMark(@RequestBody CMark cMark){
-
-        CMark flag = serviceMark.saveObject(cMark);
-        if (flag.equals(cMark)){
-            return new ResponseEntity<>(HttpStatus.OK);
-        }else {
-            return new ResponseEntity<>(HttpStatus.CONFLICT);
+    public ResponseEntity<?> saveMark(@RequestBody CMark cMark) throws CBusinessException {
+        try {
+            cMark.setIdMark(serviceMark.getNewCode());
+            if (serviceMark.saveObject(cMark) != null) {
+                throw new CBusinessException(HttpStatus.OK, "Se guardo correctamente");
+            } else {
+                throw new CBusinessException(HttpStatus.CONFLICT, "Error de Guardado");
+            }
+        } catch (CBusinessException e) {
+            throw new CBusinessException(e.getStatus(), e.getMessage());
         }
     }
-    @GetMapping("/list")
-    public List<CMark> listMark(){
-        return serviceMark.getList();
+
+    @PostMapping("/list")
+    public ResponseEntity<?> listMark() throws CBusinessException {
+        try {
+            return ResponseEntity.ok(serviceMark.getList());
+        } catch (CBusinessException e) {
+            throw new CBusinessException(e.getStatus(), e.getMessage());
+        }
     }
 
     @PutMapping("/update")
-    public ResponseEntity<?>updateMark(@RequestBody CMark cMark) {
+    public ResponseEntity<?> updateMark(@RequestBody CMark cMark) throws CBusinessException {
 
-        CMark flag = serviceMark.updateObject(cMark);
-        if (flag.equals(cMark)) {
-
-            return new ResponseEntity<>(HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.CONFLICT);
+        try {
+            if (serviceMark.updateObject(cMark) != null) {
+                throw new CBusinessException(HttpStatus.OK, "Se guardo correctamente");
+            } else {
+                throw new CBusinessException(HttpStatus.CONFLICT, "Error de Guardado");
+            }
+        } catch (CBusinessException e) {
+            throw new CBusinessException(e.getStatus(), e.getMessage());
         }
     }
+
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deleteMark(@PathVariable("id") int id){
+    public ResponseEntity<?> deleteMark(@PathVariable("id") int id)throws CBusinessException {
 
-        CMark flag = serviceMark.removedObject(id);
-        if (flag.equals(id)) {
-
-            return new ResponseEntity<>(HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.CONFLICT);
+        try {
+            if (serviceMark.removedObject(id) != null) {
+                throw new CBusinessException(HttpStatus.OK, "Se Removio Correctamente");
+            } else {
+                throw new CBusinessException(HttpStatus.BAD_REQUEST, "Error al Remover");
+            }
+        } catch (CBusinessException e) {
+            throw new CBusinessException(e.getStatus(), e.getMessage());
         }
     }
-    @GetMapping("/getMark/{id}")
-    public CMark getMark(@PathVariable("id") int id){
-        return serviceMark.getObject(id);
+
+    @PostMapping("/getMark/{id}")
+    public ResponseEntity<?> getMark(@PathVariable("id") Integer id) throws CBusinessException {
+        try {
+            var mark = serviceMark.getObject(id);
+            if (mark != null) {
+                return ResponseEntity.ok(mark);
+            } else {
+                throw new CBusinessException(HttpStatus.BAD_REQUEST, "No existe el Producto ");
+            }
+        } catch (CBusinessException e) {
+            throw new CBusinessException(e.getStatus(), e.getMessage());
+        }
+
     }
 
 }
