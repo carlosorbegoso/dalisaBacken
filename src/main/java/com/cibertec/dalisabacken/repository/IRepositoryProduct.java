@@ -1,4 +1,4 @@
-package com.web.dalisaback_end.repository;
+package com.cibertec.dalisabacken.repository;
 
 import com.cibertec.dalisabacken.models.CProduct;
 import org.springframework.data.jpa.repository.JpaRepository;
